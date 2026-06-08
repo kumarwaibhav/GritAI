@@ -4,7 +4,7 @@
 
 <h3>Turn any lecture into an exam win.</h3>
 
-<p>Record your professor. Upload your slides. Get a full study pack in under a minute — powered by <strong>LLaMA 3.3 70B via Groq</strong>.</p>
+<p>Record your professor. Upload your slides. Get a full study pack in under a minute - powered by <strong>LLaMA 3.3 70B via Groq</strong>.</p>
 
 [![Next.js](https://img.shields.io/badge/Next.js_16-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript_5-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
