@@ -42,9 +42,9 @@
 
 ## Why Grit AI?
 
-Every student knows the feeling — a 90-minute lecture, 40 slides, three chapters of reading, and an exam tomorrow morning. Grit AI was built to solve exactly that.
+Every student knows the feeling - a 90-minute lecture, 40 slides, three chapters of reading, and an exam tomorrow morning. Grit AI was built to solve exactly that.
 
-No paraphrasing. No highlights. Just paste your content and walk away with a complete, exam-ready study pack: structured notes, a quiz, a flashcard deck, and a cheat sheet — all generated in under a minute using state-of-the-art AI.
+No paraphrasing. No highlights. Just paste your content and walk away with a complete, exam-ready study pack: structured notes, a quiz, a flashcard deck, and a cheat sheet - all generated in under a minute using state-of-the-art AI.
 
 > **Stop taking notes. Start scoring higher.**
 
@@ -54,12 +54,12 @@ No paraphrasing. No highlights. Just paste your content and walk away with a com
 
 | Tool | Description |
 |------|-------------|
-| 📝 **Smart Notes** | Structured summaries with key concepts and definitions — formatted for how students actually study |
+| 📝 **Smart Notes** | Structured summaries with key concepts and definitions - formatted for how students actually study |
 | 🧠 **Quiz Generator** | 5 scenario-based questions testing deep applied understanding, not surface recall |
 | 🃏 **Flashcard Deck** | Auto-generated term/definition pairs optimized for spaced repetition |
-| 📄 **Cheat Sheet** | Dense, exam-ready revision sheet — every word earns its place |
+| 📄 **Cheat Sheet** | Dense, exam-ready revision sheet - every word earns its place |
 | 🎙️ **Live Recording** | Record directly in-browser with real-time transcription |
-| 📤 **File Upload** | Drop in PPTX, PDF, or plain text — Grit handles all parsing |
+| 📤 **File Upload** | Drop in PPTX, PDF, or plain text - Grit handles all parsing |
 
 ---
 
@@ -125,7 +125,7 @@ DOMAIN=http://localhost:3000
 # AI
 GROQ_API_KEY=gsk_...
 
-# Email (Gmail SMTP — use an App Password, not your account password)
+# Email (Gmail SMTP - use an App Password, not your account password)
 EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=587
 EMAIL_USER=your_gmail@gmail.com
@@ -176,7 +176,7 @@ Add all `.env.local` variables under **Settings → Environment Variables** in y
 src/
 ├── app/
 │   ├── api/users/          # Auth, AI generation, lecture CRUD
-│   ├── lecture/[id]/       # Lecture workspace — recording + generation UI
+│   ├── lecture/[id]/       # Lecture workspace - recording + generation UI
 │   ├── login/
 │   ├── signup/
 │   ├── profile/
@@ -203,13 +203,13 @@ src/
 ## What Students Say
 
 > *"Went from drowning in notes to acing finals. Grit AI is literally a cheat code."*
-> — **Rahul K.**, Engineering, IIT Delhi
+> - **Rahul K.**, Engineering, IIT Delhi
 
 > *"I upload my professor's slides and get a full quiz in 30 seconds. Nothing comes close."*
-> — **Aanya M.**, Medicine, AIIMS
+> - **Aanya M.**, Medicine, AIIMS
 
 > *"Finally a study tool that actually thinks about accessibility."*
-> — **Shreya V.**, Law, NLS Bangalore
+> - **Shreya V.**, Law, NLS Bangalore
 
 ---
 
@@ -233,7 +233,7 @@ src/
 
 ## License
 
-MIT — free to use, modify, and distribute. See [LICENSE](LICENSE).
+MIT - free to use, modify, and distribute. See [LICENSE](LICENSE).
 
 ---
 
