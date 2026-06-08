@@ -224,6 +224,13 @@ src/
 
 ---
 
+<<<<<<< HEAD
+=======
+## License
+
+MIT - free to use, modify, and distribute. See [LICENSE](LICENSE).
+
+>>>>>>> e45ef77cd6ed5cd96e6d259123041180216897b2
 ---
 
 <div align="center">
