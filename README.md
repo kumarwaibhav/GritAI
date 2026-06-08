@@ -217,7 +217,7 @@ src/
 
 **Kumar Waibhav Akshat**
 
-Most students don't fail because they aren't smart — they fail because the gap between a lecture and an exam is filled with time they don't have. I lived that for two years: four hours of daily commute, a phone full of lectures I never got to revisit, and exams I survived on instinct alone. What started as a desperate personal fix became something I believe can fundamentally shift how an entire generation learns — not by grinding harder, but by finally having the right tools in their corner.
+Most students don't fail because they aren't smart - they fail because the gap between a lecture and an exam is filled with time they don't have. I lived that for two years: four hours of daily commute, a phone full of lectures I never got to revisit, and exams I survived on instinct alone. What started as a desperate personal fix became something I believe can fundamentally shift how an entire generation learns - not by grinding harder, but by finally having the right tools in their corner.
 
 [![GitHub](https://img.shields.io/badge/GitHub-kumarwaibhav-181717?style=flat-square&logo=github)](https://github.com/kumarwaibhav)&nbsp;[![LinkedIn](https://img.shields.io/badge/LinkedIn-kumarwaibhav-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/kumarwaibhav)&nbsp;[![Email](https://img.shields.io/badge/Email-kwa.isro%40gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:kwa.isro@gmail.com)
 
