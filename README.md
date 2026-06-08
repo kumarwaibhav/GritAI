@@ -1,60 +1,66 @@
 <div align="center">
 
-<br/>
+<img src="https://raw.githubusercontent.com/kumarwaibhav/GritAI/master/public/logo-banner.png" alt="Grit AI" width="320" />
 
-<img src="https://raw.githubusercontent.com/kumarwaibhav/GritAI/master/public/logo-banner.png" alt="Grit AI" width="220" />
+<h3>Turn any lecture into an exam win.</h3>
 
-<br/><br/>
-
-**Turn any lecture into an exam win.**
-
-*Record your professor. Upload your slides. Get a full study pack in under a minute.*
-
-<br/>
+<p>Record your professor. Upload your slides. Get a full study pack in under a minute — powered by <strong>LLaMA 3.3 70B via Groq</strong>.</p>
 
 [![Next.js](https://img.shields.io/badge/Next.js_16-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript_5-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Groq](https://img.shields.io/badge/Groq_LLaMA_3.3_70B-F54D27?style=flat-square&logo=meta&logoColor=white)](https://groq.com/)
 [![MongoDB](https://img.shields.io/badge/MongoDB_Atlas-47A248?style=flat-square&logo=mongodb&logoColor=white)](https://mongodb.com/)
-[![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38BDF8?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Cloudflare](https://img.shields.io/badge/Cloudflare_Pages-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://grit-ai.pages.dev)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38BDF8?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Cloudflare Pages](https://img.shields.io/badge/Cloudflare_Pages-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://grit-ai.pages.dev)
+[![License: MIT](https://img.shields.io/badge/License-MIT-22C55E?style=flat-square)](LICENSE)
 
-<br/>
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-grit--ai.pages.dev-F97316?style=for-the-badge)](https://grit-ai.pages.dev)
 
-[![Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-grit--ai.pages.dev-F97316?style=for-the-badge)](https://grit-ai.pages.dev)&nbsp;&nbsp;[![License: MIT](https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge)](LICENSE)
-
-<br/>
+<p>
+  <strong>⚡ Under 60s</strong> &nbsp;·&nbsp;
+  <strong>🧠 6 AI Tools</strong> &nbsp;·&nbsp;
+  <strong>🔒 Zero Data Stored</strong> &nbsp;·&nbsp;
+  <strong>💸 Free Forever</strong>
+</p>
 
 </div>
 
 ---
 
-## What is Grit AI?
+## Table of Contents
 
-Grit AI transforms raw lecture content — audio recordings, slides, PDFs — into a complete, exam-ready study pack using **LLaMA 3.3 70B via Groq**. Stop wasting time on manual notes. Start scoring higher.
+- [Why Grit AI?](#why-grit-ai)
+- [Features](#features)
+- [How It Works](#how-it-works)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Deployment](#deployment)
+- [Project Structure](#project-structure)
+- [About the Author](#about-the-author)
+- [License](#license)
 
-<div align="center">
-<br/>
+---
 
-| ⚡ Under 60s | 🧠 6 AI Tools | 🔒 Zero Data Stored | 💸 Free Forever |
-|:---:|:---:|:---:|:---:|
-| Full study pack generated | Notes, quiz, flashcards & more | Session-scoped processing only | No credit card. Ever. |
+## Why Grit AI?
 
-<br/>
-</div>
+Every student knows the feeling — a 90-minute lecture, 40 slides, three chapters of reading, and an exam tomorrow morning. Grit AI was built to solve exactly that.
+
+No paraphrasing. No highlights. Just paste your content and walk away with a complete, exam-ready study pack: structured notes, a quiz, a flashcard deck, and a cheat sheet — all generated in under a minute using state-of-the-art AI.
+
+> **Stop taking notes. Start scoring higher.**
 
 ---
 
 ## Features
 
-| Tool | What it does |
+| Tool | Description |
 |------|-------------|
-| 📝 **Smart Notes** | Structured summaries, key concepts, and definitions — formatted for how students actually study |
-| 🧠 **Quiz Generator** | 5 scenario-based questions testing deep applied understanding — not surface recall |
+| 📝 **Smart Notes** | Structured summaries with key concepts and definitions — formatted for how students actually study |
+| 🧠 **Quiz Generator** | 5 scenario-based questions testing deep applied understanding, not surface recall |
 | 🃏 **Flashcard Deck** | Auto-generated term/definition pairs optimized for spaced repetition |
 | 📄 **Cheat Sheet** | Dense, exam-ready revision sheet — every word earns its place |
 | 🎙️ **Live Recording** | Record directly in-browser with real-time transcription |
-| 📤 **File Upload** | Drop in PPTX, PDF, or plain text — Grit handles the parsing |
+| 📤 **File Upload** | Drop in PPTX, PDF, or plain text — Grit handles all parsing |
 
 ---
 
@@ -62,10 +68,11 @@ Grit AI transforms raw lecture content — audio recordings, slides, PDFs — in
 
 ```
   ┌─────────────────────┐     ┌──────────────────────┐     ┌──────────────────────┐
-  │   Upload / Record   │────▶│    Groq LLaMA 3.3    │────▶│   Study Pack Ready   │
-  │                     │     │       70B             │     │                      │
-  │  PDF · PPTX · Audio │     │  14,400 req/day free  │     │  Notes · Quiz        │
-  │  Live mic recording │     │  ~60s end-to-end      │     │  Flashcards · Sheet  │
+  │   1. Add Content    │────▶│   2. AI Processing   │────▶│   3. Study Pack      │
+  │                     │     │                      │     │                      │
+  │  Upload PDF / PPTX  │     │  Groq LLaMA 3.3 70B  │     │  Smart Notes         │
+  │  or record live     │     │  ~60s end-to-end      │     │  Quiz · Flashcards   │
+  │  from your browser  │     │  14,400 req/day free  │     │  Cheat Sheet         │
   └─────────────────────┘     └──────────────────────┘     └──────────────────────┘
 ```
 
@@ -77,19 +84,24 @@ Grit AI transforms raw lecture content — audio recordings, slides, PDFs — in
 |-------|------------|
 | **Frontend** | Next.js 16 (App Router) · TypeScript · Tailwind CSS · shadcn/ui · Radix UI |
 | **AI Engine** | Groq Cloud · LLaMA 3.3 70B Versatile |
-| **Database** | MongoDB Atlas via Mongoose |
+| **Database** | MongoDB Atlas · Mongoose |
 | **Auth** | JWT · bcryptjs |
 | **Email** | Nodemailer · Gmail SMTP |
 | **Security** | Cloudflare Turnstile CAPTCHA · Upstash Rate Limiting |
-| **Deployment** | Cloudflare Pages via `@opennextjs/cloudflare` |
+| **Deployment** | Cloudflare Pages · `@opennextjs/cloudflare` |
 
 ---
 
 ## Getting Started
 
-**Prerequisites:** Node.js 18+, npm, MongoDB Atlas account, Groq API key
+### Prerequisites
 
-### 1. Clone
+- Node.js 18+
+- MongoDB Atlas account
+- Groq API key (free at [groq.com](https://groq.com))
+- Gmail account with App Password enabled
+
+### 1. Clone & Install
 
 ```bash
 git clone https://github.com/kumarwaibhav/GritAI.git
@@ -97,7 +109,7 @@ cd GritAI
 npm install
 ```
 
-### 2. Environment Variables
+### 2. Configure Environment
 
 Create `.env.local` in the project root:
 
@@ -114,7 +126,7 @@ DOMAIN=http://localhost:3000
 # AI
 GROQ_API_KEY=gsk_...
 
-# Email  (Gmail SMTP — use an App Password, not your login password)
+# Email (Gmail SMTP — use an App Password, not your account password)
 EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=587
 EMAIL_USER=your_gmail@gmail.com
@@ -125,7 +137,7 @@ EMAIL_FROM=Grit AI <your_gmail@gmail.com>
 NEXT_PUBLIC_TURNSTILE_SITE_KEY=0x4AAA...
 TURNSTILE_SECRET_KEY=0x4AAA...
 
-# Upstash Redis  (rate limiting)
+# Upstash Redis (rate limiting)
 UPSTASH_REDIS_REST_URL=https://...upstash.io
 UPSTASH_REDIS_REST_TOKEN=AX...
 ```
@@ -144,30 +156,33 @@ Open [http://localhost:3000](http://localhost:3000)
 
 Connect this repo to **Cloudflare Pages** for automatic deploys on every push to `master`.
 
-**Build settings:**
+**Cloudflare Pages build settings:**
+
 | Field | Value |
 |-------|-------|
 | Framework preset | None |
 | Build command | `npx @opennextjs/cloudflare build` |
 | Output directory | `.open-next/assets` |
 
-Add all `.env.local` variables in the Cloudflare Pages → Settings → Environment Variables panel. Set `DOMAIN` to your live Pages URL after first deploy.
+Add all `.env.local` variables under **Settings → Environment Variables** in your Cloudflare Pages dashboard. Update `DOMAIN` to your live Pages URL after the first deploy.
 
 ---
 
+## Project Structure
+
 <details>
-<summary><b>📁 Project Structure</b></summary>
-<br/>
+<summary>Click to expand</summary>
 
 ```
 src/
 ├── app/
-│   ├── api/users/          # Auth, AI generation, lecture CRUD API routes
+│   ├── api/users/          # Auth, AI generation, lecture CRUD
 │   ├── lecture/[id]/       # Lecture workspace — recording + generation UI
-│   ├── login/              # Auth pages
+│   ├── login/
 │   ├── signup/
 │   ├── profile/
 │   ├── forgotpass/
+│   ├── resetpassword/
 │   ├── terms/
 │   └── privacy/
 ├── components/
@@ -199,6 +214,24 @@ src/
 
 ---
 
+## About the Author
+
+<div align="center">
+
+<img src="https://avatars.githubusercontent.com/kumarwaibhav" alt="Kumar Waibhav Akshat" width="80" style="border-radius: 50%;" />
+
+**Kumar Waibhav Akshat**
+
+*Builder · Student · Tech Enthusiast*
+
+[![GitHub](https://img.shields.io/badge/GitHub-kumarwaibhav-181717?style=flat-square&logo=github)](https://github.com/kumarwaibhav)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-kumarwaibhav-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/kumarwaibhav)
+[![Email](https://img.shields.io/badge/Email-kwa.isro@gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:kwa.isro@gmail.com)
+
+</div>
+
+---
+
 ## License
 
 MIT — free to use, modify, and distribute. See [LICENSE](LICENSE).
@@ -207,12 +240,8 @@ MIT — free to use, modify, and distribute. See [LICENSE](LICENSE).
 
 <div align="center">
 
-<br/>
-
-Made with ❤️ by **[Kumar Waibhav Akshat](https://github.com/kumarwaibhav)**
-
 *Cram Smarter. Score Higher.*
 
-<br/>
+⭐ Star this repo if Grit AI helped you study better.
 
 </div>
