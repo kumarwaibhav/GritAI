@@ -2,9 +2,7 @@
 
 <br/>
 
-<img src="https://raw.githubusercontent.com/kumarwaibhav/GritAI/master/public/logo-icon.png" alt="Grit AI" width="80" />
-
-### Grit AI
+# Grit AI
 
 ### Turn Any Lecture Into An Exam Win.
 
