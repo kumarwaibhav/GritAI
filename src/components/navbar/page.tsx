@@ -34,6 +34,11 @@ const Nav: React.FC<NavProps> = ({ userDetails, userRole, loading }) => {
 
     const onScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener("scroll", onScroll, { passive: true });
+
+    // Prefetch main routes so navigation feels instant
+    router.prefetch("/");
+    router.prefetch("/profile");
+
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 

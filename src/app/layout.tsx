@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { Viewport } from "next";
 import { Plus_Jakarta_Sans, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
@@ -16,6 +17,12 @@ const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   display: "swap",
 });
+
+export const viewport: Viewport = {
+  themeColor: "#08080A",
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   title: "Grit AI - Cram Smarter. Ace Everything.",
