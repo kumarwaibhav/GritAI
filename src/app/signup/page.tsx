@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import axios from "axios";
 import { toast } from "sonner";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
@@ -64,18 +65,9 @@ const SignupU = () => {
         />
 
         {/* Logo */}
-        <div className="relative z-10 flex items-center gap-2.5">
-          <div className="w-9 h-9 flex-shrink-0">
-            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-              <defs>
-                <linearGradient id="grit-g-signup" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#F97316" />
-                  <stop offset="100%" stopColor="#EF4444" />
-                </linearGradient>
-              </defs>
-              <path d="M20 20 L80 20 L80 40 L40 40 L40 60 L60 60 L60 50 L80 50 L80 80 L20 80 Z" fill="url(#grit-g-signup)" />
-              <rect x="45" y="45" width="10" height="10" fill="white" opacity="0.8"/>
-            </svg>
+        <div className="relative z-10 flex items-center gap-1">
+          <div className="w-12 h-12 flex-shrink-0">
+            <Image src="/logo-icon.png" alt="Grit AI" width={56} height={56} className="object-contain" />
           </div>
           <span className="text-xl font-black tracking-tight" style={{ fontFamily: "var(--font-syne)", letterSpacing: "-0.02em" }}>
             <span className="brand-gradient-text">Grit</span>
@@ -123,18 +115,9 @@ const SignupU = () => {
 
       {/* Right Panel */}
       <div className="flex-1 flex flex-col items-center justify-center p-6 overflow-y-auto">
-        <div className="lg:hidden mb-8 flex items-center gap-2.5">
-          <div className="w-8 h-8 flex-shrink-0">
-            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-              <defs>
-                <linearGradient id="grit-g-sm" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#F97316" />
-                  <stop offset="100%" stopColor="#EF4444" />
-                </linearGradient>
-              </defs>
-              <path d="M20 20 L80 20 L80 40 L40 40 L40 60 L60 60 L60 50 L80 50 L80 80 L20 80 Z" fill="url(#grit-g-sm)" />
-              <rect x="45" y="45" width="10" height="10" fill="white" opacity="0.8"/>
-            </svg>
+        <div className="lg:hidden mb-8 flex items-center gap-1">
+          <div className="w-11 h-11 flex-shrink-0">
+            <Image src="/logo-icon.png" alt="Grit AI" width={48} height={48} className="object-contain" />
           </div>
           <span className="text-xl font-black tracking-tight" style={{ fontFamily: "var(--font-syne)", letterSpacing: "-0.02em" }}>
             <span className="brand-gradient-text">Grit</span>

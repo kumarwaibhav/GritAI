@@ -21,6 +21,10 @@ export const metadata: Metadata = {
   title: "Grit AI - Cram Smarter. Ace Everything.",
   description: "AI-powered lecture notes, quizzes, and cheat sheets. Record or upload your lecture and get study materials instantly.",
   keywords: ["AI notes", "lecture summarizer", "study tools", "quiz generator", "cheat sheet"],
+  icons: {
+    icon: "/logo-icon.png",
+    apple: "/logo-icon.png",
+  },
 };
 
 export default function RootLayout({

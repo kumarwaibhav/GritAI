@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "sonner";
 import { Sun, Moon } from "lucide-react";
+import Image from "next/image";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,19 +14,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Loader from "@/components/loader/page";
-
-const GritLogo = ({ size = 28 }: { size?: number }) => (
-  <svg width={size} height={size} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Grit AI logo">
-    <defs>
-      <linearGradient id="g-nav-logo" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#F97316" />
-        <stop offset="100%" stopColor="#EF4444" />
-      </linearGradient>
-    </defs>
-    <path d="M20 20 L80 20 L80 40 L40 40 L40 60 L60 60 L60 50 L80 50 L80 80 L20 80 Z" fill="url(#g-nav-logo)" />
-    <rect x="45" y="45" width="10" height="10" fill="white" opacity="0.9" />
-  </svg>
-);
 
 interface NavProps {
   userDetails: any;
@@ -98,14 +86,14 @@ const Nav: React.FC<NavProps> = ({ userDetails, userRole, loading }) => {
         {/* Brand */}
         <button
           onClick={() => router.push("/")}
-          className="flex items-center gap-3 flex-shrink-0 outline-none group"
+          className="flex items-center gap-0 flex-shrink-0 outline-none group"
           aria-label="Go to home"
         >
-          <div className="transition-transform duration-150 group-hover:scale-110">
-            <GritLogo size={34} />
+          <div className="transition-transform duration-150 group-hover:scale-110 flex-shrink-0 w-[68px] h-[68px]" style={{ marginRight: "-13px" }}>
+            <Image src="/logo-icon.png" alt="Grit AI" width={68} height={68} className="w-full h-full object-contain" priority />
           </div>
           <span
-            className="font-black text-[20px] leading-none transition-opacity duration-150 group-hover:opacity-80"
+            className="font-black text-[32px] leading-none transition-opacity duration-150 group-hover:opacity-80"
             style={{ fontFamily: "var(--font-syne)", letterSpacing: "-0.03em" }}
           >
             <span className="brand-gradient-text">Grit</span>

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import CopyRight from "../copybar/page";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -242,12 +243,15 @@ const LandingPage = () => {
         />
         <div className="max-w-7xl mx-auto px-5 lg:px-10 relative z-10">
           <div className="mb-14 max-w-2xl">
-            <p
-              className="text-xs font-bold uppercase tracking-[0.12em] mb-3"
-              style={{ color: "#F97316", fontFamily: "var(--font-syne)" }}
-            >
-              Everything You Need
-            </p>
+            <div className="flex items-center gap-2 mb-3">
+              <Image src="/logo-icon.png" alt="Grit AI" width={28} height={28} className="object-contain opacity-90" />
+              <p
+                className="text-sm font-black uppercase tracking-[0.18em]"
+                style={{ color: "#F97316", fontFamily: "var(--font-syne)", letterSpacing: "0.2em", textShadow: "0 0 24px rgba(249,115,22,0.4)" }}
+              >
+                Everything You Need
+              </p>
+            </div>
             <h2
               className="font-black leading-[1.05] tracking-[-0.03em]"
               style={{
@@ -312,8 +316,13 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-5 lg:px-10">
           <div className="mb-14 text-center">
             <p
-              className="text-xs font-bold uppercase tracking-[0.12em] mb-3"
-              style={{ color: "#F97316", fontFamily: "var(--font-syne)" }}
+              className="text-sm font-black uppercase tracking-[0.18em] mb-3"
+              style={{
+                color: "#F97316",
+                fontFamily: "var(--font-syne)",
+                letterSpacing: "0.2em",
+                textShadow: "0 0 24px rgba(249,115,22,0.4)",
+              }}
             >
               How It Works
             </p>
@@ -322,7 +331,7 @@ const LandingPage = () => {
               style={{
                 fontFamily: "var(--font-syne)",
                 color: "rgb(var(--text-primary))",
-                fontSize: "clamp(1.8rem, 4vw, 3rem)",
+                fontSize: "clamp(2rem, 4vw, 3rem)",
               }}
             >
               From lecture to study pack{" "}
@@ -392,8 +401,8 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-5 lg:px-10">
           <div className="text-center mb-12">
             <p
-              className="text-xs font-black uppercase tracking-[0.15em] mb-3"
-              style={{ color: "#F97316", fontFamily: "var(--font-syne)" }}
+              className="text-sm font-black uppercase tracking-[0.18em] mb-3"
+              style={{ color: "#F97316", fontFamily: "var(--font-syne)", letterSpacing: "0.2em", textShadow: "0 0 24px rgba(249,115,22,0.4)" }}
             >
               Student Reviews
             </p>

@@ -3,6 +3,7 @@
 import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import axios from "axios";
 import { toast } from "sonner";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
@@ -57,18 +58,9 @@ function ResetPasswordForm() {
 
       <div className="w-full max-w-sm animate-fade-in-up">
         {/* Logo */}
-        <div className="flex items-center justify-center gap-2 mb-10">
-          <div className="w-8 h-8 flex-shrink-0">
-            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-              <defs>
-                <linearGradient id="grit-g-rp" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#F97316" />
-                  <stop offset="100%" stopColor="#EF4444" />
-                </linearGradient>
-              </defs>
-              <path d="M20 20 L80 20 L80 40 L40 40 L40 60 L60 60 L60 50 L80 50 L80 80 L20 80 Z" fill="url(#grit-g-rp)" />
-              <rect x="45" y="45" width="10" height="10" fill="white" opacity="0.8"/>
-            </svg>
+        <div className="flex items-center justify-center gap-1 mb-10">
+          <div className="w-11 h-11 flex-shrink-0">
+            <Image src="/logo-icon.png" alt="Grit AI" width={48} height={48} className="object-contain" />
           </div>
           <span className="text-xl font-black" style={{ fontFamily: "var(--font-syne)" }}>
             <span className="brand-gradient-text">Grit</span>
