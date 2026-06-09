@@ -725,7 +725,6 @@ const Dashboard: React.FC<DashboardProps> = ({
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.background = "rgb(var(--bg-surface-2))";
-                    router.prefetch(`/lecture/${lecture._id}`);
                   }}
                   onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; }}
                   onClick={() => onOpen(lecture._id)}
