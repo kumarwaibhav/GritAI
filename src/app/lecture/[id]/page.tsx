@@ -100,26 +100,30 @@ const LecturePage = () => {
     if (!token) { router.push("/login"); return; }
     const fetchData = async () => {
       try {
-        const { data } = await axios.get("/api/users/me");
-        const d = data.data;
+        // Two parallel calls — user info + specific lecture content
+        const [meRes, lectureRes] = await Promise.all([
+          axios.get("/api/users/me"),
+          axios.get(`/api/users/lecture?id=${id}`),
+        ]);
+
+        const d = meRes.data.data;
         setUserDetails(d);
         setUserRole(d.role);
+
+        const lecture = lectureRes.data.lecture;
+        if (!lecture) { router.push("/"); return; }
+
+        setLectureDetails({
+          lectureId: lecture._id,
+          lectureName: lecture.topic,
+          LectureTime: formatLectureTime(lecture.createdAt),
+        });
+        setTranscript(lecture.transcript || "");
+        setNotes(lecture.notes || null);
+        setQwiz(lecture.qwiz || null);
+        setFlashcards(lecture.flashcards || null);
+        setCheatSheet(lecture.cheatSheet || null);
         setLoading(false);
-        const lecture = d.lectures.find((l: any) => l._id.toString() === id);
-        if (lecture) {
-          setLectureDetails({
-            lectureId: lecture._id,
-            lectureName: lecture.topic,
-            LectureTime: formatLectureTime(lecture.createdAt),
-          });
-          setTranscript(lecture.transcript || "");
-          setNotes(lecture.notes || null);
-          setQwiz(lecture.qwiz || null);
-          setFlashcards(lecture.flashcards || null);
-          setCheatSheet(lecture.cheatSheet || null);
-        } else {
-          router.push("/");
-        }
       } catch {
         await expiryLogout();
         router.push("/login");

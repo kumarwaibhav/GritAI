@@ -6,6 +6,36 @@ import { getDataFromToken } from "@/helpers/getDataFromToken"; // Helper to extr
 // Establish database connection
 // connect() is called inside the handler
 
+// GET /api/users/lecture?id=<lectureId> — fetch single lecture content
+export async function GET(request: NextRequest) {
+    try {
+        await connect();
+        const userId = await getDataFromToken(request);
+        if (!userId) {
+            return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
+        }
+
+        const lectureId = request.nextUrl.searchParams.get("id");
+        if (!lectureId) {
+            return NextResponse.json({ error: "Lecture ID required" }, { status: 400 });
+        }
+
+        // Positional $ projection — only returns the matched subdocument, not full user
+        const user = await User.findOne(
+            { _id: userId, "lectures._id": lectureId },
+            { "lectures.$": 1 }
+        ).lean() as any;
+
+        if (!user?.lectures?.[0]) {
+            return NextResponse.json({ error: "Lecture not found" }, { status: 404 });
+        }
+
+        return NextResponse.json({ lecture: user.lectures[0], success: true });
+    } catch {
+        return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
+    }
+}
+
 // Define POST request handler to add a lecture
 export async function POST(request: NextRequest) {
     try {
