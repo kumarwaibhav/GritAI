@@ -11,6 +11,20 @@ import { PhoneInput } from "./phone-input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Turnstile } from "@marsidev/react-turnstile";
 
+const getPasswordStrength = (pw: string): { label: string; color: string; width: string } => {
+  if (!pw) return { label: "", color: "", width: "0%" };
+  let score = 0;
+  if (pw.length >= 8) score++;
+  if (pw.length >= 12) score++;
+  if (/[A-Z]/.test(pw)) score++;
+  if (/[0-9]/.test(pw)) score++;
+  if (/[^A-Za-z0-9]/.test(pw)) score++;
+  if (score <= 1) return { label: "Weak", color: "#EF4444", width: "25%" };
+  if (score <= 2) return { label: "Fair", color: "#F97316", width: "50%" };
+  if (score <= 3) return { label: "Good", color: "#EAB308", width: "75%" };
+  return { label: "Strong", color: "#22C55E", width: "100%" };
+};
+
 const SignupU = () => {
   const router = useRouter();
   const [name, setName] = useState("");
@@ -21,6 +35,7 @@ const SignupU = () => {
   const [loading, setLoading] = useState(false);
   const [agreed, setAgreed] = useState(false);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [phoneWarning, setPhoneWarning] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("token")) router.push("/");
@@ -146,7 +161,7 @@ const SignupU = () => {
               </label>
               <input
                 type="text"
-                placeholder="Kumar Waibhav Akshat"
+                placeholder="Your full name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="grit-input"
@@ -176,15 +191,30 @@ const SignupU = () => {
               </label>
               <PhoneInput
                 value={phoneNumber}
-                onChange={(v) => setPhoneNumber(v || "")}
-                placeholder="Enter phone number"
-                className="rounded-xl text-sm"
+                onChange={(v) => {
+                  const val = v || "";
+                  setPhoneWarning(false);
+                  setPhoneNumber(val);
+                }}
+                onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+                  if (e.key === "+" || (e.key === "0" && phoneNumber.length === 0)) {
+                    setPhoneWarning(true);
+                  }
+                }}
+                placeholder="Phone number"
+                className="rounded-none text-sm overflow-hidden"
                 style={{
                   background: "rgb(var(--bg-surface-2))",
                   border: "1px solid rgb(var(--border-subtle))",
                   color: "rgb(var(--text-primary))",
+                  borderRadius: "0.5rem",
                 } as React.CSSProperties}
               />
+              {phoneWarning && (
+                <p className="text-xs mt-1" style={{ color: "#F97316" }}>
+                  Country code is selected automatically — enter number only.
+                </p>
+              )}
             </div>
 
             {/* Password */}
@@ -210,6 +240,17 @@ const SignupU = () => {
                   {showPassword ? <FaRegEye size={14} /> : <FaEyeSlash size={14} />}
                 </button>
               </div>
+              {password && (() => {
+                const s = getPasswordStrength(password);
+                return (
+                  <div className="mt-2">
+                    <div className="h-1 w-full rounded-full" style={{ background: "rgb(var(--border-subtle))" }}>
+                      <div className="h-1 rounded-full transition-all duration-300" style={{ width: s.width, background: s.color }} />
+                    </div>
+                    <p className="text-xs mt-1 font-medium" style={{ color: s.color }}>{s.label} password</p>
+                  </div>
+                );
+              })()}
             </div>
 
             {/* Terms */}
