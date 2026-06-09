@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
 import { toast } from "sonner";
-import DarkModeButton from "@/components/darkmode/page";
 
 const Forgotpass = () => {
   const [email, setEmail] = useState("");
@@ -32,8 +31,6 @@ const Forgotpass = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center mesh-bg px-4" style={{ fontFamily: "var(--font-dm-sans)" }}>
-      <DarkModeButton />
-
       <div className="w-full max-w-sm animate-fade-in-up">
         {/* Logo */}
         <div className="flex items-center justify-center gap-2 mb-10">

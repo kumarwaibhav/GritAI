@@ -7,7 +7,6 @@ import Image from "next/image";
 import axios from "axios";
 import { toast } from "sonner";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
-import DarkModeButton from "@/components/darkmode/page";
 
 function ResetPasswordForm() {
   const router = useRouter();
@@ -54,8 +53,6 @@ function ResetPasswordForm() {
 
   return (
     <div className="min-h-screen flex items-center justify-center mesh-bg px-4" style={{ fontFamily: "var(--font-dm-sans)" }}>
-      <DarkModeButton />
-
       <div className="w-full max-w-sm animate-fade-in-up">
         {/* Logo */}
         <div className="flex items-center justify-center gap-2 mb-10">
