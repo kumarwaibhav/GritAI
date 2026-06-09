@@ -10,11 +10,12 @@ interface Lecture {
 }
 
 // Establish database connection
-connect();
+// connect() is called inside the handler
 
 // Define the DELETE request handler to delete a lecture
 export async function DELETE(request: NextRequest) {
   try {
+        await connect();
     const userId = await getDataFromToken(request); // Get user's _id from token
 
     if (!userId) {

@@ -3,10 +3,11 @@ import User from "@/models/userModel";
 import { NextRequest, NextResponse } from "next/server";
 import { getDataFromToken } from "@/helpers/getDataFromToken";
 
-connect();
+// connect() is called inside the handler
 
 export async function PUT(request: NextRequest) {
     try {
+        await connect();
         const userId = await getDataFromToken(request);
         if (!userId) {
             return NextResponse.json({ error: "Not authenticated" }, { status: 401 });

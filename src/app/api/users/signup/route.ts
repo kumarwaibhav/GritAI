@@ -5,13 +5,13 @@ import bcryptjs from "bcryptjs";
 import { signupLimiter } from "@/helpers/ratelimit";
 import { verifyTurnstile } from "@/helpers/verifyTurnstile";
 
-connect();
-
 export async function POST(request: NextRequest) {
-    try {
-        const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "anonymous";
-        const { success, limit, remaining } = await signupLimiter.limit(ip);
+    const ip =
+        request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "anonymous";
 
+    // ── Rate limiting (gracefully skipped if Redis not configured) ───────────
+    try {
+        const { success, limit, remaining } = await signupLimiter.limit(ip);
         if (!success) {
             return NextResponse.json(
                 { error: "Too many signup attempts. Try again in an hour." },
@@ -24,21 +24,39 @@ export async function POST(request: NextRequest) {
                 }
             );
         }
+    } catch (err) {
+        console.error("[Signup] Rate limiter threw:", err);
+        // Continue — don't block users because of a Redis outage
+    }
 
+    try {
         const reqBody = await request.json();
         const { name, email, phoneNumber, password, captchaToken } = reqBody;
 
+        // ── CAPTCHA ──────────────────────────────────────────────────────────
         if (!captchaToken) {
             return NextResponse.json({ error: "CAPTCHA required" }, { status: 400 });
         }
 
         const captchaValid = await verifyTurnstile(captchaToken, ip);
         if (!captchaValid) {
-            return NextResponse.json({ error: "CAPTCHA verification failed" }, { status: 400 });
+            return NextResponse.json(
+                { error: "CAPTCHA verification failed. Please refresh and try again." },
+                { status: 400 }
+            );
         }
 
-        if (!name || !email || !password || typeof name !== "string" || typeof email !== "string" || typeof password !== "string") {
-            return NextResponse.json({ error: "Name, email, and password are required" }, { status: 400 });
+        // ── Field validation ─────────────────────────────────────────────────
+        if (
+            !name || !email || !password ||
+            typeof name !== "string" ||
+            typeof email !== "string" ||
+            typeof password !== "string"
+        ) {
+            return NextResponse.json(
+                { error: "Name, email, and password are required" },
+                { status: 400 }
+            );
         }
 
         const sanitizedEmail = email.toLowerCase().trim();
@@ -47,12 +65,18 @@ export async function POST(request: NextRequest) {
         }
 
         if (password.length < 8) {
-            return NextResponse.json({ error: "Password must be at least 8 characters" }, { status: 400 });
+            return NextResponse.json(
+                { error: "Password must be at least 8 characters" },
+                { status: 400 }
+            );
         }
 
         if (name.length > 100) {
             return NextResponse.json({ error: "Name too long" }, { status: 400 });
         }
+
+        // ── Database ─────────────────────────────────────────────────────────
+        await connect(); // throws with a clear message if MONGO_URI is missing
 
         const existingEmail = await User.findOne({ email: sanitizedEmail });
         if (existingEmail) {
@@ -62,7 +86,10 @@ export async function POST(request: NextRequest) {
         if (phoneNumber) {
             const existingPhone = await User.findOne({ phoneNumber });
             if (existingPhone) {
-                return NextResponse.json({ error: "Phone number already in use" }, { status: 400 });
+                return NextResponse.json(
+                    { error: "Phone number already in use" },
+                    { status: 400 }
+                );
             }
         }
 
@@ -72,15 +99,21 @@ export async function POST(request: NextRequest) {
         const newUser = new User({
             name,
             email: sanitizedEmail,
-            phoneNumber,
+            phoneNumber: phoneNumber || null,
             password: hashedPassword,
             lectures: [],
         });
 
         await newUser.save();
 
-        return NextResponse.json({ message: "Account created successfully", success: true });
+        return NextResponse.json({
+            message: "Account created successfully",
+            success: true,
+        });
     } catch (error: any) {
-        return NextResponse.json({ error: "Signup failed" }, { status: 500 });
+        // Surface the real error message so issues are diagnosable
+        const msg = error?.message ?? "Signup failed";
+        console.error("[Signup] Error:", msg);
+        return NextResponse.json({ error: msg }, { status: 500 });
     }
 }

@@ -4,10 +4,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { sendEmail } from "@/helpers/mailer";
 import { forgotLimiter } from "@/helpers/ratelimit";
 
-connect();
+// connect() is called inside the handler
 
 export async function POST(request: NextRequest) {
     try {
+        await connect();
         const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "anonymous";
         const { success } = await forgotLimiter.limit(ip);
         if (!success) {

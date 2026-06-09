@@ -3,11 +3,12 @@ import User from "@/models/userModel";
 import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
 
-connect();
+// connect() is called inside the handler
 
 // GET /api/users/resetpassword?token=xxx — validate token
 export async function GET(request: NextRequest) {
     try {
+        await connect();
         const token = request.nextUrl.searchParams.get("token");
         if (!token) {
             return NextResponse.json({ error: "Token is required" }, { status: 400 });

@@ -1,12 +1,9 @@
-import { CheckIcon, ChevronsUpDown } from "lucide-react";
+"use client";
 
 import * as React from "react";
-
 import * as RPNInput from "react-phone-number-input";
-
-import flags from "react-phone-number-input/flags";
-
-import { buttonVariants } from "@/components/ui/button";
+import { getCountryCallingCode } from "react-phone-number-input";
+import { CheckIcon, ChevronsUpDown, AlertCircle } from "lucide-react";
 import {
   Command,
   CommandEmpty,
@@ -15,55 +12,96 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { Input, InputProps } from "@/components/ui/input";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-
 import { cn } from "@/lib/utils";
 
 export type PhoneNumberValue = RPNInput.Value;
 
-type PhoneInputProps = Omit<
+export type PhoneInputProps = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
   "onChange" | "value"
 > &
   Omit<RPNInput.Props<typeof RPNInput.default>, "onChange"> & {
     onChange?: (value?: RPNInput.Value) => void;
+    error?: string | null;
   };
 
-const PhoneInput: React.ForwardRefExoticComponent<PhoneInputProps> =
-  React.forwardRef<React.ElementRef<typeof RPNInput.default>, PhoneInputProps>(
-    ({ className, onChange, ...props }, ref) => {
-      return (
+// ── Emoji flag from ISO country code ─────────────────────────────────────────
+// Much cleaner than SVG flags — renders natively in every modern browser.
+function toFlagEmoji(code: string): string {
+  return code
+    .toUpperCase()
+    .split("")
+    .map((c) => String.fromCodePoint(c.charCodeAt(0) + 127397))
+    .join("");
+}
+
+// ── Root component ────────────────────────────────────────────────────────────
+const PhoneInput = React.forwardRef<
+  React.ElementRef<typeof RPNInput.default>,
+  PhoneInputProps
+>(({ className, onChange, error, style, ...props }, ref) => {
+  return (
+    <div className="w-full">
+      <div
+        className={cn(
+          // One cohesive input row — no internal rounding on the seam
+          "flex items-stretch w-full h-10 overflow-hidden",
+          "rounded-lg border",
+          error
+            ? "border-red-500 focus-within:border-red-500"
+            : "border-[rgb(var(--border-subtle))] focus-within:border-[rgb(var(--border-default))]",
+          "bg-[rgb(var(--bg-surface-2))] transition-colors duration-150",
+          className
+        )}
+        style={style}
+      >
         <RPNInput.default
           ref={ref}
-          className={cn("flex", className)}
-          flagComponent={FlagComponent}
+          className="flex w-full"
+          flagComponent={FlagDisplay}
           countrySelectComponent={CountrySelect}
-          inputComponent={InputComponent}
-          defaultCountry="IN" // Set default country to India
+          inputComponent={NumberInput}
+          defaultCountry="IN"
+          international
           onChange={(value) => onChange?.(value)}
           {...props}
         />
-      );
-    }
+      </div>
+
+      {error && (
+        <p className="flex items-center gap-1 mt-1.5 text-xs" style={{ color: "#EF4444" }}>
+          <AlertCircle className="h-3 w-3 flex-shrink-0" />
+          {error}
+        </p>
+      )}
+    </div>
   );
+});
 PhoneInput.displayName = "PhoneInput";
 
-const InputComponent = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, ...props }, ref) => (
-    <Input
-      className={cn("rounded-s-none rounded-e-md", className)}
-      {...props}
-      ref={ref}
-    />
-  )
-);
-InputComponent.displayName = "InputComponent";
+// ── Number input ─────────────────────────────────────────────────────────────
+const NumberInput = React.forwardRef<
+  HTMLInputElement,
+  React.InputHTMLAttributes<HTMLInputElement>
+>(({ className, ...props }, ref) => (
+  <input
+    ref={ref}
+    className={cn(
+      "flex-1 h-full bg-transparent px-3 text-sm outline-none",
+      "text-[rgb(var(--text-primary))] placeholder:text-[rgb(var(--text-muted))]",
+      className
+    )}
+    {...props}
+  />
+));
+NumberInput.displayName = "NumberInput";
 
+// ── Country selector ─────────────────────────────────────────────────────────
 type CountrySelectOption = { label: string; value: RPNInput.Country };
 
 type CountrySelectProps = {
@@ -80,57 +118,60 @@ const CountrySelect = ({
   options,
 }: CountrySelectProps) => {
   const handleSelect = React.useCallback(
-    (country: RPNInput.Country) => {
-      onChange(country);
-    },
+    (country: RPNInput.Country) => onChange(country),
     [onChange]
   );
+
+  const callingCode = value ? `+${getCountryCallingCode(value)}` : "";
 
   return (
     <Popover>
       <PopoverTrigger
         type="button"
-        className={cn(
-          buttonVariants({ variant: "outline" }),
-          "flex gap-1 rounded-e-none rounded-s-md pr-1 pl-3"
-        )}
         disabled={disabled}
+        className={cn(
+          "flex items-center gap-1.5 h-full px-3 flex-shrink-0",
+          "border-r border-[rgb(var(--border-subtle))]",
+          "text-[rgb(var(--text-primary))]",
+          "hover:bg-[rgb(var(--bg-surface-3))] transition-colors duration-150",
+          disabled && "cursor-not-allowed opacity-50"
+        )}
       >
-        <FlagComponent country={value} countryName={value} />
-        <ChevronsUpDown
-          className={cn(
-            "h-4 w-4 opacity-50",
-            disabled ? "hidden" : "opacity-100"
-          )}
-        />
+        {/* Emoji flag */}
+        <span className="text-base leading-none select-none">
+          {value ? toFlagEmoji(value) : "🌐"}
+        </span>
+        {/* Calling code */}
+        <span className="text-xs font-medium tabular-nums" style={{ color: "rgb(var(--text-muted))" }}>
+          {callingCode}
+        </span>
+        <ChevronsUpDown className="h-3 w-3 flex-shrink-0" style={{ color: "rgb(var(--text-muted))" }} />
       </PopoverTrigger>
-      <PopoverContent className="p-0 w-[300px]">
+
+      <PopoverContent className="p-0 w-[280px]" align="start">
         <Command>
           <CommandList>
-            <CommandInput placeholder="Search country..." />
+            <CommandInput placeholder="Search country…" />
             <CommandEmpty>No country found.</CommandEmpty>
             <CommandGroup>
               {options
                 .filter((x) => x.value)
                 .map((option) => (
                   <CommandItem
-                    className="gap-2"
                     key={option.value}
                     onSelect={() => handleSelect(option.value)}
+                    className="flex items-center gap-2 cursor-pointer"
                   >
-                    <FlagComponent
-                      country={option.value}
-                      countryName={option.label}
-                    />
-                    <span className="text-sm flex-1">{option.label}</span>
-                    {option.value && (
-                      <span className="text-sm text-foreground/50">
-                        {`+${RPNInput.getCountryCallingCode(option.value)}`}
-                      </span>
-                    )}
+                    <span className="text-base leading-none select-none">
+                      {toFlagEmoji(option.value)}
+                    </span>
+                    <span className="text-sm flex-1 truncate">{option.label}</span>
+                    <span className="text-xs tabular-nums" style={{ color: "rgb(var(--text-muted))" }}>
+                      +{getCountryCallingCode(option.value)}
+                    </span>
                     <CheckIcon
                       className={cn(
-                        "ml-auto h-4 w-4",
+                        "ml-1 h-3.5 w-3.5 flex-shrink-0",
                         option.value === value ? "opacity-100" : "opacity-0"
                       )}
                     />
@@ -144,15 +185,8 @@ const CountrySelect = ({
   );
 };
 
-const FlagComponent = ({ country, countryName }: RPNInput.FlagProps) => {
-  const Flag = flags[country];
-
-  return (
-    <span className="flex h-4 w-6 overflow-hidden rounded-sm bg-foreground/20">
-      {Flag && <Flag title={countryName} />}
-    </span>
-  );
-};
-FlagComponent.displayName = "FlagComponent";
+// ── Flag display (used inside the input row by RPNInput, not shown separately) ─
+const FlagDisplay = (_props: RPNInput.FlagProps) => null;
+FlagDisplay.displayName = "FlagDisplay";
 
 export { PhoneInput };

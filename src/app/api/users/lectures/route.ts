@@ -4,10 +4,11 @@ import { NextRequest, NextResponse } from "next/server"; // Next.js API response
 import { getDataFromToken } from "@/helpers/getDataFromToken"; // Helper to extract user data from token
 
 // Establish database connection
-connect();
+// connect() is called inside the handler
 
 export async function GET(request: NextRequest) {
   try {
+        await connect();
     // Extract userId from the token
     const userId = await getDataFromToken(request);
 

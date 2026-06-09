@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server"; // Next.js API response
 import { getDataFromToken } from "@/helpers/getDataFromToken"; // Helper to extract user data from token
 
 // Establish database connection
-connect();
+// connect() is called inside the handler
 
 // Define the type for a lecture
 interface Lecture {
@@ -16,6 +16,7 @@ interface Lecture {
 // Define POST request handler to save the transcript
 export async function POST(request: NextRequest) {
   try {
+        await connect();
     // Extract userId (or email) from the token
     const userId = await getDataFromToken(request); // Get userId from the token
     if (!userId) {

@@ -1,22 +1,26 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 export async function connect() {
-    if (!process.env.MONGO_URI) {
-        console.error("[DB] MONGO_URI is not set — database unavailable");
-        return;
+    const uri = process.env.MONGO_URI;
+    if (!uri) {
+        throw new Error("MONGO_URI is not set — database unavailable. Add it to your Vercel environment variables.");
     }
+
     try {
-        const connection = mongoose.connection;
-        if (connection.listenerCount('connected') === 0) {
-            connection.on('connected', () => console.log("[DB] MongoDB connected"));
-            connection.on('error', (err) => console.error("[DB] MongoDB connection error:", err.message));
-            connection.on('disconnected', () => console.warn("[DB] MongoDB disconnected"));
-        }
-        if (connection.readyState === 0) {
-            await mongoose.connect(process.env.MONGO_URI);
+        const conn = mongoose.connection;
+
+        if (conn.readyState === 1) return; // Already connected
+
+        if (conn.listenerCount("connected") === 0) {
+            conn.on("connected", () => console.log("[DB] MongoDB connected"));
+            conn.on("error", (err) => console.error("[DB] MongoDB error:", err.message));
+            conn.on("disconnected", () => console.warn("[DB] MongoDB disconnected"));
         }
 
+        if (conn.readyState === 0) {
+            await mongoose.connect(uri);
+        }
     } catch (error: any) {
-        console.error("[DB] Failed to connect to MongoDB:", error.message);
+        throw new Error(`[DB] Failed to connect to MongoDB: ${error.message}`);
     }
 }
