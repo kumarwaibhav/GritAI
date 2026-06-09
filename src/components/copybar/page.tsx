@@ -3,7 +3,7 @@ import { FaGithub, FaLinkedin } from "react-icons/fa6";
 
 const CopyRight = () => {
   return (
-    <footer className="mx-4 mt-4 mb-4">
+    <footer className="mx-4 mt-auto pb-4 pt-2">
       <div
         className="rounded-2xl px-6 h-11 flex items-center justify-between"
         style={{

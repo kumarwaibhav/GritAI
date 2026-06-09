@@ -42,6 +42,7 @@ const LecturePage = () => {
   const [flashcards, setFlashcards] = useState<string | null>(null);
   const [cheatSheet, setCheatSheet] = useState<string | null>(null);
   const [quizCount, setQuizCount] = useState(10);
+  const [activeTab, setActiveTab] = useState("notes");
   const [buttonText, setButtonText] = useState("Generate Study Materials");
   const [isGenerating, setIsGenerating] = useState(false);
   const [isAccessible, setIsAccessible] = useState(false);
@@ -159,24 +160,28 @@ const LecturePage = () => {
       setButtonText("Generating notes…");
       const n = await callGenerate("lectureNotes");
       setNotes(n);
-
-      setButtonText("Generating cheat sheet…");
-      const cs = await callGenerate("cheatsheet");
-      setCheatSheet(cs);
+      setActiveTab("notes");
 
       setButtonText("Generating quiz…");
       const q = await callGenerate("quiz", { quizCount });
       setQwiz(q);
+      setActiveTab("qwiz");
 
       setButtonText("Generating scenario questions…");
       const fc = await callGenerate("flashcards");
       setFlashcards(fc);
+      setActiveTab("flashcards");
+
+      setButtonText("Generating cheat sheet…");
+      const cs = await callGenerate("cheatsheet");
+      setCheatSheet(cs);
+      setActiveTab("cheatsheet");
 
       setButtonText("Saving…");
       const saveRes = await fetch("/api/users/saveGeneration", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ topic: lectureDetails?.lectureName, notes: n, qwiz: q, flashcards: fc, cheatSheet: cs }),
+        body: JSON.stringify({ topic: lectureDetails?.lectureName, notes: n, qwiz: q, flashcards: fc, cheatSheet: cs }), // order: notes, quiz, scenario, cheatsheet
       });
       const saveResult = await saveRes.json();
       if (saveResult.success) toast.success("Study materials generated and saved!");
@@ -362,10 +367,10 @@ const LecturePage = () => {
   const hasAnyContent = notes || qwiz || flashcards || cheatSheet;
 
   return (
-    <div className="min-h-screen mesh-bg" style={{ fontFamily: "var(--font-dm-sans)" }}>
+    <div className="min-h-screen mesh-bg flex flex-col" style={{ fontFamily: "var(--font-dm-sans)" }}>
       <Nav loading={loading} userRole={userRole} userDetails={userDetails} />
 
-      <div className="pt-20 px-4 pb-4 max-w-5xl mx-auto">
+      <div className="pt-16 px-4 pb-2 max-w-6xl mx-auto">
         {/* Lecture header */}
         <div className="flex items-start justify-between mt-4 mb-5 animate-fade-in">
           <div>
@@ -612,7 +617,7 @@ const LecturePage = () => {
           className="rounded-2xl overflow-hidden animate-fade-in delay-250"
           style={{ background: "rgb(var(--bg-surface-1))", border: "1px solid rgb(var(--border-subtle))" }}
         >
-          <Tabs defaultValue="notes" className="w-full">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
             {/* Tab bar */}
             <div
               className="px-4 pt-3 pb-0"
@@ -729,8 +734,8 @@ const LecturePage = () => {
           </Tabs>
         </div>
 
-        <CopyRight />
       </div>
+      <CopyRight />
     </div>
   );
 };

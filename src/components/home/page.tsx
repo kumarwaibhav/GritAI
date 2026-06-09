@@ -313,7 +313,7 @@ const LandingPage = () => {
           borderBottom: "1px solid rgb(var(--border-subtle))",
         }}
       >
-        <div className="max-w-7xl mx-auto px-5 lg:px-10">
+        <div className="flex-1 max-w-7xl mx-auto px-5 lg:px-10 pb-4">
           <div className="mb-14 text-center">
             <p
               className="text-sm font-black uppercase tracking-[0.18em] mb-3"
@@ -398,7 +398,7 @@ const LandingPage = () => {
 
       {/* ── Testimonial ─────────────────────────────────────── */}
       <section className="py-20">
-        <div className="max-w-7xl mx-auto px-5 lg:px-10">
+        <div className="flex-1 max-w-7xl mx-auto px-5 lg:px-10 pb-4">
           <div className="text-center mb-12">
             <p
               className="text-sm font-black uppercase tracking-[0.18em] mb-3"
@@ -468,7 +468,7 @@ const LandingPage = () => {
 
       {/* ── CTA Banner ──────────────────────────────────────── */}
       <section className="pb-20">
-        <div className="max-w-7xl mx-auto px-5 lg:px-10">
+        <div className="flex-1 max-w-7xl mx-auto px-5 lg:px-10 pb-4">
           <div
             className="rounded-3xl px-8 py-14 text-center relative overflow-hidden"
             style={{ background: "rgb(var(--bg-surface-1))", border: "1px solid rgba(249,115,22,0.2)" }}
@@ -567,8 +567,8 @@ const Dashboard: React.FC<DashboardProps> = ({
   ];
 
   return (
-    <div className="min-h-screen pt-20 pb-16" style={{ fontFamily: "var(--font-dm-sans)" }}>
-      <div className="max-w-7xl mx-auto px-5 lg:px-10">
+    <div className="min-h-screen flex flex-col pt-20" style={{ fontFamily: "var(--font-dm-sans)" }}>
+      <div className="flex-1 max-w-7xl mx-auto px-5 lg:px-10 pb-4">
 
         {/* Stats row */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
@@ -819,9 +819,7 @@ const Dashboard: React.FC<DashboardProps> = ({
         </div>
       </div>
 
-      <div className="mt-8">
-        <CopyRight />
-      </div>
+      <CopyRight />
     </div>
   );
 };

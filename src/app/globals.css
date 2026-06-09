@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 html {
-  zoom: 1;
+  zoom: 1.06;
 }
 
 .rdp-vhidden {
@@ -374,6 +374,14 @@ html {
 
 .btn-fire:hover::before {
   opacity: 1;
+}
+
+
+/* Snappy interactions — removes 300ms mobile tap delay */
+button, a, [role="button"], input[type="submit"], input[type="button"] {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
 }
 
 .btn-fire:active {
