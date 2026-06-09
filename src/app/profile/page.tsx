@@ -3,13 +3,11 @@ export const dynamic = "force-dynamic";
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import dynamicImport from "next/dynamic";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import { CalendarIcon } from "@radix-ui/react-icons";
 import Nav from "@/components/navbar/page";
 import Loader from "@/components/loader/page";
 import CopyRight from "@/components/copybar/page";
@@ -17,11 +15,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import {
   Select,
   SelectContent,
@@ -41,11 +34,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-
-const Calendar = dynamicImport(
-  () => import("@/components/ui/calendar").then((m) => m.Calendar),
-  { ssr: false }
-);
 
 const SectionCard = ({ title, children }: { title: string; children: React.ReactNode }) => (
   <div
@@ -355,32 +343,14 @@ export default function ProfilePage() {
                   <Label className="text-xs font-semibold uppercase tracking-wide mb-1.5 block" style={{ color: "rgb(var(--text-muted))", fontFamily: "var(--font-syne)" }}>
                     Date of Birth
                   </Label>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button
-                        variant="outline"
-                        className={cn(
-                          "w-full justify-start text-left text-sm rounded-xl font-normal",
-                          !date && "text-muted-foreground"
-                        )}
-                        style={{ background: "rgb(var(--bg-surface-2))", borderColor: "rgb(var(--border-subtle))", color: "rgb(var(--text-primary))" }}
-                      >
-                        <CalendarIcon className="mr-2 h-4 w-4 opacity-50" />
-                        {date ? format(date, "PPP") : "Pick a date"}
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
-                      <Calendar
-                        mode="single"
-                        captionLayout="dropdown-buttons"
-                        selected={date}
-                        onSelect={setDate}
-                        fromYear={1960}
-                        toYear={2030}
-                        initialFocus
-                      />
-                    </PopoverContent>
-                  </Popover>
+                  <input
+                    type="date"
+                    value={date ? format(date, "yyyy-MM-dd") : ""}
+                    onChange={(e) => setDate(e.target.value ? new Date(e.target.value) : undefined)}
+                    max={new Date().toISOString().split("T")[0]}
+                    className="grit-input text-sm"
+                    style={{ colorScheme: "dark" }}
+                  />
                 </div>
               </div>
 
