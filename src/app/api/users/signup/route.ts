@@ -37,15 +37,24 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "CAPTCHA verification failed" }, { status: 400 });
         }
 
-        if (!name || !email || !password) {
+        if (!name || !email || !password || typeof name !== "string" || typeof email !== "string" || typeof password !== "string") {
             return NextResponse.json({ error: "Name, email, and password are required" }, { status: 400 });
+        }
+
+        const sanitizedEmail = email.toLowerCase().trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(sanitizedEmail)) {
+            return NextResponse.json({ error: "Invalid email address" }, { status: 400 });
         }
 
         if (password.length < 8) {
             return NextResponse.json({ error: "Password must be at least 8 characters" }, { status: 400 });
         }
 
-        const existingEmail = await User.findOne({ email });
+        if (name.length > 100) {
+            return NextResponse.json({ error: "Name too long" }, { status: 400 });
+        }
+
+        const existingEmail = await User.findOne({ email: sanitizedEmail });
         if (existingEmail) {
             return NextResponse.json({ error: "Email already in use" }, { status: 400 });
         }
@@ -62,7 +71,7 @@ export async function POST(request: NextRequest) {
 
         const newUser = new User({
             name,
-            email,
+            email: sanitizedEmail,
             phoneNumber,
             password: hashedPassword,
             lectures: [],

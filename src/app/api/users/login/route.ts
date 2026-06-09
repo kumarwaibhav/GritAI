@@ -38,11 +38,16 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "CAPTCHA verification failed" }, { status: 400 });
         }
 
-        if (!email || !password) {
+        if (!email || !password || typeof email !== "string" || typeof password !== "string") {
             return NextResponse.json({ error: "Email and password required" }, { status: 400 });
         }
 
-        const user = await User.findOne({ email });
+        const sanitizedEmail = email.toLowerCase().trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(sanitizedEmail)) {
+            return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
+        }
+
+        const user = await User.findOne({ email: sanitizedEmail });
         if (!user) {
             return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
         }

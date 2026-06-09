@@ -31,6 +31,19 @@ export async function POST(req: NextRequest) {
     const data = await req.json();
     const transcript = data.transcript;
     const type = data.type;
+
+    if (!transcript || typeof transcript !== "string") {
+      return NextResponse.json({ error: "Transcript is required" }, { status: 400 });
+    }
+
+    if (transcript.length > 100000) {
+      return NextResponse.json({ error: "Transcript too large" }, { status: 413 });
+    }
+
+    const allowedTypes = ["lectureNotes", "notes", "quiz", "flashcards", "cheatsheet"];
+    if (type && !allowedTypes.includes(type)) {
+      return NextResponse.json({ error: "Invalid generation type" }, { status: 400 });
+    }
     const parsedQuizCount = Number(data.quizCount);
     const quizCount = Number.isFinite(parsedQuizCount)
       ? Math.min(50, Math.max(1, Math.floor(parsedQuizCount)))
