@@ -170,7 +170,7 @@ const SignupU = () => {
             <span className="brand-gradient-text">one.</span>
           </h2>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             {[
               {
                 n: "01",
@@ -224,7 +224,7 @@ const SignupU = () => {
       </div>
 
       {/* ── Right Panel ────────────────────────────────────────────────────── */}
-      <div className="flex-1 flex flex-col items-center justify-center p-6 overflow-y-auto">
+      <div className="flex-1 flex flex-col items-center justify-center px-6 py-4 overflow-y-auto">
         <div className="lg:hidden mb-8 flex items-center gap-1">
           <div className="w-11 h-11 flex-shrink-0">
             <Image
@@ -245,7 +245,7 @@ const SignupU = () => {
         </div>
 
         <div className="w-full max-w-sm animate-fade-in-up">
-          <div className="mb-7">
+          <div className="mb-4">
             <h2
               className="text-4xl font-black mb-2"
               style={{
@@ -262,7 +262,7 @@ const SignupU = () => {
             </p>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             {/* Name */}
             <div>
               <label
@@ -471,7 +471,7 @@ const SignupU = () => {
             </button>
           </div>
 
-          <div className="flex items-center gap-3 my-6">
+          <div className="flex items-center gap-3 my-3">
             <div
               className="flex-1 h-px"
               style={{ background: "rgb(var(--border-subtle))" }}

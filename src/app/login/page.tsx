@@ -48,12 +48,12 @@ export default function LoginPage() {
 
   return (
     <div
-      className="min-h-screen flex mesh-bg"
+      className="h-screen flex mesh-bg overflow-hidden"
       style={{ fontFamily: "var(--font-dm-sans, 'DM Sans', sans-serif)" }}
     >
       {/* Left Panel - Brand */}
       <div
-        className="hidden lg:flex lg:w-1/2 flex-col justify-between p-10 relative overflow-hidden"
+        className="hidden lg:flex lg:w-1/2 flex-col justify-between p-10 relative overflow-hidden h-full"
         style={{ background: "rgb(var(--bg-surface-1))", borderRight: "1px solid rgb(var(--border-subtle))" }}
       >
         {/* Gradient orb */}
@@ -132,7 +132,7 @@ export default function LoginPage() {
       </div>
 
       {/* Right Panel - Form */}
-      <div className="flex-1 flex flex-col items-center justify-center p-6">
+      <div className="flex-1 flex flex-col items-center justify-center px-6 py-4 overflow-y-auto">
         {/* Mobile logo */}
         <div className="lg:hidden mb-8 flex items-center gap-1">
           <div className="w-11 h-11 flex-shrink-0">
@@ -146,7 +146,7 @@ export default function LoginPage() {
 
         <div className="w-full max-w-sm animate-fade-in-up">
           {/* Header */}
-          <div className="mb-8">
+          <div className="mb-5">
             <h2
               className="text-4xl font-black mb-2"
               style={{ fontFamily: "var(--font-syne)", color: "rgb(var(--text-primary))", letterSpacing: "-0.03em", lineHeight: "1.0" }}
@@ -159,7 +159,7 @@ export default function LoginPage() {
           </div>
 
           {/* Form */}
-          <form onSubmit={handleSignIn} className="space-y-4">
+          <form onSubmit={handleSignIn} className="space-y-3">
             <div>
               <label
                 className="block text-xs font-semibold mb-1.5 uppercase tracking-wide"
@@ -240,7 +240,7 @@ export default function LoginPage() {
           </form>
 
           {/* Divider */}
-          <div className="flex items-center gap-3 my-6">
+          <div className="flex items-center gap-3 my-4">
             <div className="flex-1 h-px" style={{ background: "rgb(var(--border-subtle))" }} />
             <span className="text-xs" style={{ color: "rgb(var(--text-dim))" }}>or</span>
             <div className="flex-1 h-px" style={{ background: "rgb(var(--border-subtle))" }} />
