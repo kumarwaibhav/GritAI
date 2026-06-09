@@ -13,10 +13,10 @@ export const loginLimiter = new Ratelimit({
     prefix: "rl:login",
 });
 
-// 3 signups per hour per IP — bot prevention
+// 10 signups per hour per IP — bot prevention
 export const signupLimiter = new Ratelimit({
     redis,
-    limiter: Ratelimit.slidingWindow(3, "1 h"),
+    limiter: Ratelimit.slidingWindow(10, "1 h"),
     prefix: "rl:signup",
 });
 
