@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
 import { toast } from "sonner";
@@ -36,12 +37,13 @@ const Forgotpass = () => {
       <div className="w-full max-w-sm animate-fade-in-up">
         {/* Logo */}
         <div className="flex items-center justify-center gap-2 mb-10">
-          <div className="w-8 h-8 rounded-xl brand-gradient flex items-center justify-center">
-            <svg width="16" height="16" viewBox="0 0 14 14" fill="none">
-              <path d="M7 1L9.5 5.5H13L9.5 8.5L11 13L7 10.5L3 13L4.5 8.5L1 5.5H4.5L7 1Z" fill="white" />
-            </svg>
+          <div className="w-10 h-10 flex-shrink-0">
+            <Image src="/logo-icon.png" alt="Grit AI" width={40} height={40} className="object-contain" />
           </div>
-          <span className="text-xl font-black" style={{ fontFamily: "var(--font-syne)" }}>
+          <span
+            className="text-3xl font-black tracking-tight"
+            style={{ fontFamily: "var(--font-syne)", letterSpacing: "-0.03em" }}
+          >
             <span className="brand-gradient-text">Grit</span>
             <span style={{ color: "rgb(var(--text-primary))" }}> AI</span>
           </span>

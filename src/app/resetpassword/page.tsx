@@ -58,11 +58,14 @@ function ResetPasswordForm() {
 
       <div className="w-full max-w-sm animate-fade-in-up">
         {/* Logo */}
-        <div className="flex items-center justify-center gap-1 mb-10">
-          <div className="w-11 h-11 flex-shrink-0">
-            <Image src="/logo-icon.png" alt="Grit AI" width={48} height={48} className="object-contain" />
+        <div className="flex items-center justify-center gap-2 mb-10">
+          <div className="w-10 h-10 flex-shrink-0">
+            <Image src="/logo-icon.png" alt="Grit AI" width={40} height={40} className="object-contain" />
           </div>
-          <span className="text-xl font-black" style={{ fontFamily: "var(--font-syne)" }}>
+          <span
+            className="text-3xl font-black tracking-tight"
+            style={{ fontFamily: "var(--font-syne)", letterSpacing: "-0.03em" }}
+          >
             <span className="brand-gradient-text">Grit</span>
             <span style={{ color: "rgb(var(--text-primary))" }}> AI</span>
           </span>

@@ -32,6 +32,7 @@ export async function GET(request: NextRequest) {
 // POST /api/users/resetpassword — { token, newPassword }
 export async function POST(request: NextRequest) {
     try {
+        await connect();
         const { token, newPassword } = await request.json();
 
         if (!token || !newPassword) {
