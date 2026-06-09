@@ -230,7 +230,7 @@ const SignupU = () => {
             </div>
 
             <Turnstile
-              siteKey="0x4AAAAAADgzpj4mgOllr9CQ"
+              siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
               onSuccess={(token) => setCaptchaToken(token)}
               onExpire={() => setCaptchaToken(null)}
               options={{ theme: "auto" }}
