@@ -89,12 +89,12 @@ const Nav: React.FC<NavProps> = ({ userDetails, userRole, loading }) => {
           className="flex items-center gap-0 flex-shrink-0 outline-none group"
           aria-label="Go to home"
         >
-          <div className="transition-transform duration-150 group-hover:scale-110 flex-shrink-0 w-[68px] h-[68px]" style={{ marginRight: "-13px" }}>
-            <Image src="/logo-icon.png" alt="Grit AI" width={68} height={68} className="w-full h-full object-contain" priority />
+          <div className="transition-transform duration-150 group-hover:scale-110 flex-shrink-0 h-[48px] w-auto" style={{ marginRight: "4px" }}>
+            <Image src="/logo-icon.png" alt="Grit AI" width={41} height={48} className="h-full w-auto object-contain" priority />
           </div>
           <span
-            className="font-black text-[32px] leading-none transition-opacity duration-150 group-hover:opacity-80"
-            style={{ fontFamily: "var(--font-syne)", letterSpacing: "-0.03em" }}
+            className="font-black leading-none transition-opacity duration-150 group-hover:opacity-80"
+            style={{ fontFamily: "var(--font-syne)", letterSpacing: "-0.03em", fontSize: "27px" }}
           >
             <span className="brand-gradient-text">Grit</span>
             <span style={{ color: "rgb(var(--text-primary))" }}> AI</span>
