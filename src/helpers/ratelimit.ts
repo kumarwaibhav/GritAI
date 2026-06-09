@@ -26,3 +26,10 @@ export const forgotLimiter = new Ratelimit({
     limiter: Ratelimit.slidingWindow(3, "1 h"),
     prefix: "rl:forgot",
 });
+
+// 20 generations per hour per user — Groq cost protection
+export const generateLimiter = new Ratelimit({
+    redis,
+    limiter: Ratelimit.slidingWindow(20, "1 h"),
+    prefix: "rl:generate",
+});

@@ -1,6 +1,7 @@
 import Groq from "groq-sdk";
 import { NextRequest, NextResponse } from "next/server";
 import { getDataFromToken } from "@/helpers/getDataFromToken";
+import { generateLimiter } from "@/helpers/ratelimit";
 
 export const maxDuration = 60;
 
@@ -19,6 +20,11 @@ export async function POST(req: NextRequest) {
     const userId = await getDataFromToken(req);
     if (!userId) {
       return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
+    }
+
+    const { success } = await generateLimiter.limit(String(userId));
+    if (!success) {
+      return NextResponse.json({ error: "Generation limit reached. Try again in an hour." }, { status: 429 });
     }
 
     const apiKey = process.env.GROQ_API_KEY;
