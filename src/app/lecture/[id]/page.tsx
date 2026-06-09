@@ -136,8 +136,14 @@ const LecturePage = () => {
   };
 
   const formatLectureTime = (iso: string) => {
+    if (!iso) return "";
     const d = new Date(iso);
-    return `${d.toLocaleDateString("en-IN")} ${d.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit", hour12: false })}`;
+    const day   = String(d.getDate()).padStart(2, "0");
+    const month = d.toLocaleString("en-US", { month: "short" });
+    const year  = d.getFullYear();
+    const hh    = String(d.getHours()).padStart(2, "0");
+    const mm    = String(d.getMinutes()).padStart(2, "0");
+    return `${day} ${month} ${year} · ${hh}:${mm}`;
   };
 
   const callGenerate = async (type: string, extra: Record<string, unknown> = {}) => {
@@ -370,7 +376,7 @@ const LecturePage = () => {
     <div className="min-h-screen mesh-bg flex flex-col" style={{ fontFamily: "var(--font-dm-sans)" }}>
       <Nav loading={loading} userRole={userRole} userDetails={userDetails} />
 
-      <div className="pt-16 px-4 pb-2 max-w-6xl mx-auto">
+      <div className="pt-16 px-4 pb-2 max-w-6xl w-full mx-auto">
         {/* Lecture header */}
         <div className="flex items-start justify-between mt-4 mb-5 animate-fade-in">
           <div>
