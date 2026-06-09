@@ -9,5 +9,6 @@ export async function verifyTurnstile(token: string, ip?: string): Promise<boole
         }),
     });
     const data = await res.json();
+    if (!data.success) console.error("[Turnstile] failed:", JSON.stringify(data));
     return data.success === true;
 }
