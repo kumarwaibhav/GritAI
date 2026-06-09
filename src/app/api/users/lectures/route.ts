@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
         // Only fetch _id, topic, createdAt from each lecture — not notes/quiz/cheatsheet content
         const user = await User.findById(userId)
             .select("lectures._id lectures.topic lectures.createdAt")
-            .lean();
+            .lean() as any;
 
         if (!user) {
             return NextResponse.json({ error: "User does not exist" }, { status: 404 });
