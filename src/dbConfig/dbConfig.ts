@@ -6,12 +6,14 @@ export async function connect() {
         return;
     }
     try {
-        if (mongoose.connection.readyState === 0) {
-            await mongoose.connect(process.env.MONGO_URI);
-            const connection = mongoose.connection;
+        const connection = mongoose.connection;
+        if (connection.listenerCount('connected') === 0) {
             connection.on('connected', () => console.log("[DB] MongoDB connected"));
             connection.on('error', (err) => console.error("[DB] MongoDB connection error:", err.message));
             connection.on('disconnected', () => console.warn("[DB] MongoDB disconnected"));
+        }
+        if (connection.readyState === 0) {
+            await mongoose.connect(process.env.MONGO_URI);
         }
 
     } catch (error: any) {
