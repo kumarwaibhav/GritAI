@@ -14,11 +14,11 @@ const CopyRight = () => {
         <p
           className="text-xs"
           style={{
-            color: "rgb(var(--text-muted))",
+            color: "rgb(var(--text-primary))",
             fontFamily: "var(--font-dm-sans, 'DM Sans', sans-serif)",
           }}
         >
-          © 2023–26{" "}
+          © 2025–26{" "}
           <span className="brand-gradient-text font-semibold">Grit AI</span>
           {" · "}By Kumar Waibhav Akshat
         </p>

@@ -127,7 +127,7 @@ export default function LoginPage() {
 
         {/* Bottom attribution */}
         <p className="relative z-10 text-xs" style={{ color: "rgb(var(--text-dim))" }}>
-          © 2023–26 Grit AI · By Kumar Waibhav Akshat
+          © 2025–26 Grit AI · By Kumar Waibhav Akshat
         </p>
       </div>
 
@@ -215,12 +215,14 @@ export default function LoginPage() {
               </div>
             </div>
 
-            <Turnstile
-              siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-              onSuccess={(token) => setCaptchaToken(token)}
-              onExpire={() => setCaptchaToken(null)}
-              options={{ theme: "auto" }}
-            />
+            <div className="flex justify-center">
+              <Turnstile
+                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                onSuccess={(token) => setCaptchaToken(token)}
+                onExpire={() => setCaptchaToken(null)}
+                options={{ theme: "auto" }}
+              />
+            </div>
 
             <button
               type="submit"
