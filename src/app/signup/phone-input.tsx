@@ -186,7 +186,7 @@ const CountrySelect = ({
 };
 
 // ── Flag display (used inside the input row by RPNInput, not shown separately) ─
-const FlagDisplay = (_props: RPNInput.FlagProps) => null;
+const FlagDisplay = (_props: RPNInput.FlagProps): JSX.Element => <></>;
 FlagDisplay.displayName = "FlagDisplay";
 
 export { PhoneInput };
