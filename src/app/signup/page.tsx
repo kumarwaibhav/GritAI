@@ -11,6 +11,7 @@ import { isValidPhoneNumber } from "react-phone-number-input";
 import { PhoneInput } from "./phone-input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Turnstile } from "@marsidev/react-turnstile";
+import type { TurnstileInstance } from "@marsidev/react-turnstile";
 
 const getPasswordStrength = (
   pw: string
@@ -39,6 +40,7 @@ const SignupU = () => {
   const [loading, setLoading] = useState(false);
   const [agreed, setAgreed] = useState(false);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const turnstileRef = React.useRef<TurnstileInstance>(null);
 
   useEffect(() => {
     if (localStorage.getItem("token")) router.push("/");
@@ -105,6 +107,9 @@ const SignupU = () => {
       router.push("/login");
     } catch (e: any) {
       toast.error(e.response?.data?.error || "Signup failed");
+      // Reset CAPTCHA — tokens are one-time use, retrying with the same token always fails
+      turnstileRef.current?.reset();
+      setCaptchaToken(null);
     } finally {
       setLoading(false);
     }
@@ -420,9 +425,10 @@ const SignupU = () => {
             </div>
 
             <Turnstile
+              ref={turnstileRef}
               siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
               onSuccess={(token) => setCaptchaToken(token)}
-              onExpire={() => setCaptchaToken(null)}
+              onExpire={() => { setCaptchaToken(null); }}
               onError={() => {
                 setCaptchaToken(null);
                 toast.error("CAPTCHA failed to load. Please refresh the page.");
