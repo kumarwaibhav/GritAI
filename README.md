@@ -30,11 +30,11 @@
 
 - [Why Grit AI?](#why-grit-ai)
 - [Features](#features)
-- [How It Works](#how-it-works)
-- [Tech Stack](#tech-stack)
+- [How Grit AI Works](#how-grit-ai-works)
+- [Grit AI Tech Stack](#grit-ai-tech-stack)
 - [Getting Started](#getting-started)
 - [Deployment](#deployment)
-- [Project Structure](#project-structure)
+- [Grit AI Project Structure](#grit-ai-project-structure)
 - [About the Author](#about-the-author)
 
 ---
@@ -62,7 +62,7 @@ No paraphrasing. No highlights. Just paste your content and walk away with a com
 
 ---
 
-## How It Works
+## How Grit AI Works
 
 <div align="center">
 <img src="https://raw.githubusercontent.com/kumarwaibhav/GritAI/master/public/architecture.png" alt="Grit AI Architecture" width="100%" />
@@ -70,7 +70,7 @@ No paraphrasing. No highlights. Just paste your content and walk away with a com
 
 ---
 
-## Tech Stack
+## Grit AI Tech Stack
 
 | Layer | Technology |
 |-------|------------|
@@ -160,7 +160,7 @@ Add all `.env.local` variables under **Settings → Environment Variables** in y
 
 ---
 
-## Project Structure
+## Grit AI Project Structure
 
 <details>
 <summary>Click to expand</summary>
@@ -193,7 +193,7 @@ src/
 
 ---
 
-## What Students Say
+## What Students Say About Grit AI
 
 > *"Went from drowning in notes to acing finals. Grit AI is literally a cheat code."*
 > - **Rahul K.**, Engineering, IIT Delhi
@@ -208,19 +208,22 @@ src/
 
 ## About the Author
 
-<div align="center">
-
-<img src="https://avatars.githubusercontent.com/kumarwaibhav" alt="Kumar Waibhav Akshat" width="80" style="border-radius: 50%;" />
+<table>
+<tr>
+<td width="110" valign="top">
+<img src="https://avatars.githubusercontent.com/kumarwaibhav" alt="Kumar Waibhav Akshat" width="90" style="border-radius: 50%;" />
+</td>
+<td valign="top">
 
 **Kumar Waibhav Akshat**
 
-*Builder · Student · Tech Enthusiast*
+Most students don't fail because they aren't smart - they fail because the gap between a lecture and an exam is filled with time they don't have. I lived that for two years: four hours of daily commute, a phone full of lectures I never got to revisit, and exams I survived on instinct alone. What started as a desperate personal fix became something I believe can fundamentally shift how an entire generation learns - not by grinding harder, but by finally having the right tools in their corner.
 
-[![GitHub](https://img.shields.io/badge/GitHub-kumarwaibhav-181717?style=flat-square&logo=github)](https://github.com/kumarwaibhav)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-kumarwaibhav-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/kumarwaibhav)
-[![Email](https://img.shields.io/badge/Email-kwa.isro@gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:kwa.isro@gmail.com)
+[![GitHub](https://img.shields.io/badge/GitHub-kumarwaibhav-181717?style=flat-square&logo=github)](https://github.com/kumarwaibhav)&nbsp;[![LinkedIn](https://img.shields.io/badge/LinkedIn-kumarwaibhav-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/kumarwaibhav)&nbsp;[![Email](https://img.shields.io/badge/Email-kwa.isro%40gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:kwa.isro@gmail.com)
 
-</div>
+</td>
+</tr>
+</table>
 
 ---
 
